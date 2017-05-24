@@ -2,9 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_centerVertical="true"
+    android:gravity="center"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_search_page"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/textView2"

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_centerVertical="true"
+    android:gravity="center"
     android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent">
 
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_main_page"
+        android:contentDescription="@string/app_name" />
 
     <TextView
         android:id="@+id/textView2"
@@ -15,5 +21,6 @@
         android:textColor="@color/colorAccent"
         android:textAlignment="center"
         android:text="@string/main" />
+
 
 </LinearLayout>
