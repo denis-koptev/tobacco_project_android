@@ -1,6 +1,7 @@
 package com.tobaccofeed.tobaccofeed;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,8 +10,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,34 +61,70 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         // Create a new fragment and specify the fragment to show based on nav item clicked
         Fragment fragment = null;
         Class fragmentClass;
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         switch (item.getItemId()) {
             case R.id.nav_main:
                 fragmentClass = MainFragment.class;
+                Log.i("TobaccoFeed", "Jump to main");
                 break;
+
             case R.id.nav_search:
                 fragmentClass = SearchFragment.class;
+                Log.i("TobaccoFeed", "Jump to search");
                 break;
+
             case R.id.nav_tobacco:
                 fragmentClass = TobaccoFragment.class;
+                Log.i("TobaccoFeed", "Jump to tobacco");
                 break;
+
+            case R.id.nav_profile:
+                fragmentClass = UserProfileFragment.class;
+                Log.i("TobaccoFeed", "Jump to user profile");
+                break;
+
+            case R.id.nav_favourites:
+                fragmentClass = UserFavouritesFragment.class;
+                Log.i("TobaccoFeed", "Jump to user favourites");
+                break;
+
+            case R.id.nav_logout:
+                fragmentClass = MainFragment.class;
+                navigationView.getMenu().getItem(0).setChecked(true);
+                Toast.makeText(getApplicationContext(),
+                        "Logged out successfully!",
+                        Toast.LENGTH_SHORT).show();
+                // Process logout here
+                Log.i("TobaccoFeed", "Jump to logout");
+                break;
+
+            case R.id.nav_settings:
+                fragmentClass = SettingsFragment.class;
+                Log.i("TobaccoFeed", "Jump to settings");
+                break;
+
             default:
                 fragmentClass = MainFragment.class;
+                if (!navigationView.getMenu().getItem(0).isChecked()) {
+                    navigationView.getMenu().getItem(0).setChecked(true);
+                    System.out.println("CHECK MAIN");
+                }
+                Log.i("TobaccoFeed", "Jump to main (default)");
         }
 
         try {

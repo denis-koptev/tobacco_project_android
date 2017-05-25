@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/menu_general"
+        android:checkableBehavior="single"
+        android:menuCategory="alternative">
         <item
             android:id="@+id/nav_main"
             android:icon="@drawable/ic_main_page"
@@ -16,21 +19,33 @@
             android:title="@string/tobacco" />
     </group>
 
-    <item android:title="@string/username">
-        <menu>
-            <item
-                android:id="@+id/nav_profile"
-                android:icon="@drawable/ic_person"
-                android:title="@string/profile" />
-            <item
-                android:id="@+id/nav_favourites"
-                android:icon="@drawable/ic_favourites"
-                android:title="@string/favourites" />
-            <item
-                android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_logout"
-                android:title="@string/log_out" />
-        </menu>
-    </item>
+    <group
+        android:id="@+id/menu_user"
+        android:checkableBehavior="single"
+        android:menuCategory="secondary">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_person"
+            android:title="@string/profile" />
+        <item
+            android:id="@+id/nav_favourites"
+            android:icon="@drawable/ic_favourites"
+            android:title="@string/favourites" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_logout"
+            android:checkable="false"
+            android:title="@string/log_out" />
+    </group>
+
+    <group
+        android:id="@+id/menu_other"
+        android:checkableBehavior="single"
+        android:menuCategory="container">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings" />
+    </group>
 
 </menu>

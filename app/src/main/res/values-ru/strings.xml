@@ -10,4 +10,6 @@
     <string name="search">Поиск</string>
     <string name="tobacco">Табак</string>
     <string name="username">Username</string>
+    <string name="settings">Настройки</string>
+    <string name="favourites">Закладки</string>
 </resources>

@@ -2,25 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerVertical="true"
     android:background="@color/colorPrimaryDark"
     android:gravity="center"
     android:orientation="vertical">
+
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_search_page" />
+        android:src="@drawable/ic_settings" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="@string/search"
+        android:text="@string/settings"
         android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="46sp" />
+
 
 </LinearLayout>
