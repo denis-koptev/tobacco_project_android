@@ -8,6 +8,7 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         // Toast.makeText(getContext(), "Main", Toast.LENGTH_SHORT).show();
     }
 }

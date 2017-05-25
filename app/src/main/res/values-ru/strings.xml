@@ -12,4 +12,12 @@
     <string name="username">Username</string>
     <string name="settings">Настройки</string>
     <string name="favourites">Закладки</string>
+    <string name="general">Основное</string>
+    <string name="language">Язык</string>
+    <string name="log_in">Войти</string>
+    <string name="log_in_message">Авторизация прошла успешно</string>
+    <string name="log_out_message">Успешно</string>
+    <string name="save">Сохранить</string>
+    <string name="search_lock_message">К сожалению, мы не можем найти \'</string>
+    <string name="save_message">Сохранено</string>
 </resources>

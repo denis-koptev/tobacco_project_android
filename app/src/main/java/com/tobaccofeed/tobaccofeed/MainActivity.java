@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
 
     private NavigationView navigationView;
     private ActivePage activePage;
+    private boolean loggedIn = false;
 
 
     @Override
@@ -60,16 +61,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+    public boolean onPrepareOptionsMenu(Menu menu) {
 
         boolean actionSave = (activePage == ActivePage.SETTINGS);
+        System.out.println(actionSave);
 
         menu.findItem(R.id.action_search).setVisible(!actionSave);
         menu.findItem(R.id.action_save).setVisible(actionSave);
 
-        // Associate searchable configuration with the SearchView
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView =
@@ -79,9 +86,9 @@ public class MainActivity extends AppCompatActivity
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                System.err.println("DATA SEARCHED: " + query);
+                Log.i("TobaccoFeed", "DATA SEARCHED: " + query);
                 Toast.makeText(getApplicationContext(),
-                        "Sorry, but now we can't search '" + query + "'", Toast.LENGTH_LONG).show();
+                        getString(R.string.search_lock_message) + query + "'", Toast.LENGTH_LONG).show();
                 MenuItemCompat.collapseActionView(menu.findItem(R.id.action_search));
                 return false;
             }
@@ -107,7 +114,7 @@ public class MainActivity extends AppCompatActivity
                 return true;
             }
             case R.id.action_save: {
-                Toast.makeText(this, "Saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.save_message, Toast.LENGTH_SHORT).show();
                 navigationView.setCheckedItem(R.id.nav_main);
                 onNavigationItemSelected(navigationView.getMenu().getItem(0));
             }
@@ -162,13 +169,40 @@ public class MainActivity extends AppCompatActivity
                 navigationView.getMenu().getItem(0).setChecked(true);
 
                 Toast.makeText(getApplicationContext(),
-                        "Logged out successfully!",
+                        R.string.log_out_message,
                         Toast.LENGTH_SHORT).show();
 
                 pageName = navigationView.getMenu().getItem(0).getTitle().toString();
 
                 // Process logout here
+
+                navigationView.getMenu().findItem(R.id.nav_login).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_logout).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_profile).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_favourites).setVisible(false);
+
                 Log.i("TobaccoFeed", "Jump to logout");
+                break;
+
+            case R.id.nav_login:
+                fragmentClass = MainFragment.class;
+                activePage = ActivePage.MAIN;
+                navigationView.getMenu().getItem(0).setChecked(true);
+
+                Toast.makeText(getApplicationContext(),
+                        R.string.log_in_message,
+                        Toast.LENGTH_SHORT).show();
+
+                pageName = navigationView.getMenu().getItem(0).getTitle().toString();
+
+                // Process login here
+
+                navigationView.getMenu().findItem(R.id.nav_login).setVisible(false);
+                navigationView.getMenu().findItem(R.id.nav_logout).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_profile).setVisible(true);
+                navigationView.getMenu().findItem(R.id.nav_favourites).setVisible(true);
+
+                Log.i("TobaccoFeed", "Jump to login");
                 break;
 
             case R.id.nav_settings:
@@ -182,7 +216,6 @@ public class MainActivity extends AppCompatActivity
                 activePage = ActivePage.MAIN;
                 if (!navigationView.getMenu().getItem(0).isChecked()) {
                     navigationView.getMenu().getItem(0).setChecked(true);
-                    System.out.println("CHECK MAIN");
                 }
                 Log.i("TobaccoFeed", "Jump to main (default)");
         }

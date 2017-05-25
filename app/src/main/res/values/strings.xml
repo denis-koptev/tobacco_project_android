@@ -16,6 +16,11 @@
     <string name="general">General</string>
     <string name="language">Language</string>
     <string name="save">Save</string>
+    <string name="log_in">Log In</string>
+    <string name="log_in_message">Logged in successfully!</string>
+    <string name="log_out_message">Logged out successfully!</string>
+    <string name="search_lock_message">Sorry, but now we can\'t search \'</string>
+    <string name="save_message">Saved</string>
 
     <string-array name="languages">
         <item>English</item>
