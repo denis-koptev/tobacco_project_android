@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_save"
+        android:orderInCategory="2"
+        android:title="@string/save"
+        android:icon="@drawable/ic_save"
+        android:visible="false"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_page"
+        android:title="@android:string/search_go"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
 
 </menu>
